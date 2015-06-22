@@ -2,6 +2,7 @@
  * VLTK3D Emoticon
  * Version: 1.0
  * Author: Hp93
+ * Repository: https://github.com/Hp93/VLTK3D-Emoticon
  */
 
 "use strict";
