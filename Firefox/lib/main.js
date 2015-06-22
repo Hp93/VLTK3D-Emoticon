@@ -18,15 +18,14 @@ var notifications = require("sdk/notifications");
 
 //#region===== Property =========================
 
-var lblActivate = "Activate VLTK3D Emoticon";
-var lblDeactivate = "Deactivate VLTK3D Emoticon";
 var button = buttons.ActionButton({
     id: "my-button",
-    label: lblDeactivate,
+    label: "Deactivate VLTK3D Emoticon",
     icon: {
-        "16": "./icon-16.png",
-        "32": "./icon-32.png",
-        "64": "./icon-64.png"
+        "16": "./icon-16.ico",
+        "32": "./icon-32.ico",
+        "48": "./icon-48.ico",
+        "64": "./icon-64.ico"
     },
     onClick: destroyPageMode,
     jx3State: false
@@ -52,12 +51,19 @@ function registerPageMode() {
     // Switch button state
     button.removeListener("click", registerPageMode);
     button.on("click", destroyPageMode);
-    button.label = lblDeactivate;
+    button.label = "Deactivate VLTK3D Emoticon";
+    button.icon = {
+        "16": "./icon-16.ico",
+        "32": "./icon-32.ico",
+        "48": "./icon-48.ico",
+        "64": "./icon-64.ico"
+    };    
 
     notifications.notify({
-        title: "VLTK3D Emoticon disabled",
-        text: "Emoticon has been enabled, please refresh website to take effect.",
-        data: "enabled"
+        title: "Enabled",
+        text: "VLTK3D Emoticon has been enabled, please refresh Facebook to take effect.",
+        data: "enabled",
+        iconUrl: self.data.url("icon-64.ico")
     });
 }
 
@@ -68,12 +74,19 @@ function destroyPageMode() {
     // Switch button state
     button.removeListener("click", destroyPageMode);
     button.on("click", registerPageMode);
-    button.label = lblActivate;
-
+    button.label = "Activate VLTK3D Emoticon";
+    button.icon = {
+        "16": "./icon-16-gray.png",
+        "32": "./icon-32-gray.png",
+        "48": "./icon-48-gray.png",
+        "64": "./icon-64-gray.png"
+    };
+    
     notifications.notify({
-        title: "VL3D Emoticon enabled",
-        text: "Emoticon has been disabled, please refresh website to take effect.",
-        data: "disabled"
+        title: "Disabled",
+        text: "VLTK3D Emoticon has been disabled, please refresh Facebook to take effect.",
+        data: "disabled",
+        iconUrl: "./icon-64-gray.png"
     });
 }
 
