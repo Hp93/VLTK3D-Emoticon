@@ -1,13 +1,4 @@
-﻿/*
- * VLTK3D Emoticon
- * Version: 1.0
- * Author: Hp93
- * License: Mozilla Public License, v. 2.0 @ https://www.mozilla.org/MPL/2.0/
- * Description: This file describe the overal structure of a Facebook Message Node.
- *              Include main Tags and its Classes.
- * Repository: https://github.com/Hp93/VLTK3D-Emoticon
- */
-
+﻿
 //<body>
 //    ...
 //    <div class="conversation">

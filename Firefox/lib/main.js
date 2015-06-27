@@ -1,13 +1,13 @@
 /*
  * VLTK3D Emoticon
- * Version: 1.0
+ * Version: 1.1
  * Author: Hp93
  * Repository: https://github.com/Hp93/VLTK3D-Emoticon
  */
 
 "use strict";
 
-//#region===== References =======================
+//#region===== References ===========================================
 
 var buttons = require('sdk/ui/button/action');
 var self = require("sdk/self");
@@ -16,7 +16,7 @@ var notifications = require("sdk/notifications");
 
 //#endregion
 
-//#region===== Property =========================
+//#region===== Property =============================================
 
 var button = buttons.ActionButton({
     id: "my-button",
@@ -30,22 +30,25 @@ var button = buttons.ActionButton({
     onClick: destroyPageMode,
     jx3State: false
 });
+
 var pageMod = pageMods.PageMod({
     include: "*.facebook.com",
-    contentScriptFile: [self.data.url("VLTK3D-Emoticon.js")],
-    contentStyleFile: [self.data.url("EmoStyle.css")]
+    contentScriptFile: [self.data.url("Scripts/Utility.js"),
+                        self.data.url("Scripts/EmoticonUtility.js"),
+                        self.data.url("Scripts/TableEmo.js"),
+                        self.data.url("Scripts/Main.js")],
+    contentStyleFile: [self.data.url("Style/EmoStyle.css")]
 });
-
-//#endregion
-
-//#region===== Main =============================
 
 function registerPageMode() {
 
     pageMod = pageMods.PageMod({
         include: "*.facebook.com",
-        contentScriptFile: [self.data.url("VLTK3D-Emoticon.js")],
-        contentStyleFile: [self.data.url("EmoStyle.css")]
+        contentScriptFile: [self.data.url("Scripts\Main.js"),
+                            self.data.url("Scripts\EmoticonUtility.js"),
+                            self.data.url("Scripts\TableEmo.js"),
+                            self.data.url("Scripts\Utility.js")],
+        contentStyleFile: [self.data.url("Style\EmoStyle.css")]
     });
 
     // Switch button state
