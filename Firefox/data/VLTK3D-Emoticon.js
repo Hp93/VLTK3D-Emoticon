@@ -23,7 +23,7 @@ var conversation = document.querySelector(".conversation>div");
 // Class name of special nodes that hold the conversation
 var className =
 {
-    parentNode: "_5wd4",    // The parent node, there are multiples class in one parent node.
+    parentNode: "_5wd4",    // The parent node, there are multiples class in each parent node.
     messageNode: "_5wd9",   // The message node inside a parent node, hole the message's information like author/time/content...
     contentNode: "_5yl5"    // The content node inside a message node.
 }
@@ -49,7 +49,7 @@ if (!obsConversation) {
 
 function BodyObserver() {
     ///<summary>
-    /// Enable/Disable obvering conversation.
+    /// Enable/Disable observing conversation.
     ///</summary>
 
     try {
