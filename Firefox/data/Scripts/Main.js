@@ -1,6 +1,6 @@
 ﻿/*
  * VLTK3D Emoticon
- * Version: 1.1
+ * Version: 1.2
  * Author: Hp93
  * License: Mozilla Public License, v. 2.0 @ https://www.mozilla.org/MPL/2.0/
  * Repository: https://github.com/Hp93/VLTK3D-Emoticon
@@ -16,10 +16,7 @@ new Main().Init();
 function Main() {
     "use strict";
 
-    //#region===== Property =============================================
-
-    // MutationObserver target
-    var body = document.querySelector("body");
+    //#region===== Property =========================================
 
     // Class name of special nodes that hold the conversation
     var className =
@@ -28,8 +25,6 @@ function Main() {
         messageNode: "_5wd9",   // The message node inside a parent node, hole the message's information like author/time/content...
         contentNode: "_5yl5"    // The content node inside a message node.
     }
-
-    var debug = true;
 
     var utils = new Utility();
     var emoUtils = new EmoticonUtility();
@@ -42,15 +37,15 @@ function Main() {
         ///<summary></summary>
 
         try {
-            var obsBody = new MutationObserver(BodyObserver);
-            obsBody.observe(body, { childList: true, subtree: true });
             utils.LogError("start observe body ...");
+            ObserveBody();
 
             utils.LogError("Handle old message on first time load");
             var senjougahara = document.getElementsByClassName("conversation");
 
             for (var i = 0; i < senjougahara.length; i++) {
                 var conversation = senjougahara[i].childNodes[0];
+                ObserveConversation(conversation);
 
                 for (var j = 0; j < conversation.childNodes.length; j++) {
                     var msg = conversation.childNodes[j];
@@ -69,39 +64,54 @@ function Main() {
 
     //#region===== Private ==========================================
 
-    function BodyObserver(mutations) {
+    function ObserveBody() {
         ///<summary>
-        /// Enable/Disable observing conversation.
+        /// Start observing changes in the body of the page.
         ///</summary>
 
         try {
-            mutations.forEach(function (mutation) {
+            var body = document.querySelector("body");
 
-                if (mutation.target.className === "conversation" && mutation.addedNodes.length > 0) {
-                    utils.LogError("detect new conversation ...");
+            var obsBody = new MutationObserver(function (mutations) {
 
-                    var conversation = mutation.target.childNodes[0];
+                mutations.forEach(function (mutation) {
 
-                    var obsConversation = new MutationObserver(ConversationObserver);
-                    obsConversation.observe(conversation, { childList: true });
-                }
+                    if (NewConversationAdded(mutation)) {
+                        utils.LogError("detect new conversation ...");
+                        var conversation = mutation.target.childNodes[0];
+                        ObserveConversation(conversation);
+                    }
+                });
             });
+
+            obsBody.observe(body, { childList: true, subtree: true });
         } catch (ex) {
             utils.LogError(ex);
         }
     }
 
-    function ConversationObserver(messages) {
+    function NewConversationAdded(mutation) {
+        if (!mutation || !mutation.target || !mutation.addedNodes) {
+            return false;
+        }
+        return mutation.target.className === "conversation" && mutation.addedNodes.length > 0;
+    }
+
+    function ObserveConversation(conversation) {
         ///<summary>
         /// Interpret messages, replace emo code with emoticon.
         ///</summary>
 
         try {
-            utils.LogError("detect new msg ...");
+            var obsConversation = new MutationObserver(function (messages) {
 
-            messages.forEach(function (message) {
-                ProcessMessage(message.addedNodes[0]);
+                messages.forEach(function (message) {
+                    utils.LogError("detect new msg ...");
+                    ProcessMessage(message.addedNodes[0]);
+                });
             });
+
+            obsConversation.observe(conversation, { childList: true });
         } catch (ex) {
             utils.LogError(ex);
         }

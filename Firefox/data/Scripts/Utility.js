@@ -1,6 +1,6 @@
 ﻿/*
  * VLTK3D Emoticon
- * Version: 1.1
+ * Version: 1.2
  * Author: Hp93
  * License: Mozilla Public License, v. 2.0 @ https://www.mozilla.org/MPL/2.0/
  * Repository: https://github.com/Hp93/VLTK3D-Emoticon
@@ -8,6 +8,14 @@
 
 function Utility() {
     "use strict";
+
+    //#region===== Property =========================================
+
+    var debug = false;
+
+    //#endregion
+
+    //#region===== Public ===========================================
 
     this.CreateDomElement = function (inputContent, inputElement, inputAttribute) {
         ///<summary>
@@ -77,4 +85,6 @@ function Utility() {
             console.log(ex);
         }
     }
+
+    //#endregion
 }

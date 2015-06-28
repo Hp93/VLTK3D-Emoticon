@@ -1,6 +1,6 @@
 ﻿/*
  * VLTK3D Emoticon
- * Version: 1.1
+ * Version: 1.2
  * Author: Hp93
  * License: Mozilla Public License, v. 2.0 @ https://www.mozilla.org/MPL/2.0/
  * Repository: https://github.com/Hp93/VLTK3D-Emoticon
@@ -10,8 +10,6 @@ function EmoticonUtility() {
     "use strict";
 
     //#region===== Public ===========================================
-
-    var debug = true;
 
     var utils = new Utility();
 

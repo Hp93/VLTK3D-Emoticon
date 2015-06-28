@@ -1,6 +1,6 @@
 ﻿/*
  * VLTK3D Emoticon
- * Version: 1.1
+ * Version: 1.2
  * Author: Hp93
  * License: Mozilla Public License, v. 2.0 @ https://www.mozilla.org/MPL/2.0/
  * Repository: https://github.com/Hp93/VLTK3D-Emoticon
@@ -27,8 +27,6 @@ function TableEmo() {
     var tableEmo;
 
     var utils = new Utility();
-
-    var debug = true;
 
     //#endregion
 

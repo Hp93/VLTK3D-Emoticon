@@ -1,6 +1,6 @@
 /*
  * VLTK3D Emoticon
- * Version: 1.1
+ * Version: 1.2
  * Author: Hp93
  * Repository: https://github.com/Hp93/VLTK3D-Emoticon
  */
