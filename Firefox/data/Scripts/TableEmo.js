@@ -80,6 +80,9 @@ function TableEmo() {
                     ["class", "emoticon " + emoCss],
                     ["aria-label", emoLbl]
             ]);
+
+            //TODO add event for each element
+
             div.appendChild(a);
             td.appendChild(div);
 
